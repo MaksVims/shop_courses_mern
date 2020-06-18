@@ -1,0 +1,40 @@
+{
+  "name": "mern_shop_deploy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run client\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VitamiN935/shop_courses_mern.git"
+  },
+  "keywords": [
+    "mern",
+    "react",
+    "js",
+    "es6",
+    "express",
+    "mongoose"
+  ],
+  "author": "Maxim Smetanin <maks.s923@mail.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VitamiN935/shop_courses_mern/issues"
+  },
+  "homepage": "https://github.com/VitamiN935/shop_courses_mern#readme",
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "cross-env": "^7.0.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.19"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
