@@ -1,0 +1,113 @@
+.Button {
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #000;
+  outline: none;
+  transition: color, border, background-color, .22s ease-in, transform .1s ease-in;
+
+  &:hover, &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    background: #6c6565;
+    color: #fff;
+    opacity: .7;
+    border-color: #6c6565;
+
+    &:hover {
+      background: #6c6565;
+      border-color: #6c6565;
+      color: #fff;
+      opacity: .7;
+    }
+  }
+
+  &:active {
+    outline: none;
+  }
+}
+
+.primary {
+  border: 2px solid #3677e2;
+
+  &:hover {
+    background: #3677e2;
+    color: #fff;
+  }
+
+  &:active {
+    transform: scale(.96);
+  }
+}
+
+.primary.inversion {
+  background: #3677e2;
+  color: #fff;
+}
+
+.warning {
+  border: 2px solid #e5b42d;
+
+  &:hover {
+    background: #e2ac29;
+    color: #000;
+  }
+
+  &:active {
+    transform: scale(.96);
+  }
+}
+
+.danger {
+  border: 2px solid rgba(231, 61, 61, 0.95);
+
+  &:hover {
+    background: rgba(231, 61, 61, 0.95);
+    color: #fff;
+  }
+
+  &:active {
+    transform: scale(.96);
+  }
+}
+
+.success {
+  border: 2px solid #62ea79;
+
+  &:hover {
+    background: #62ea79;
+    color: #fff;
+  }
+
+  &:active {
+    transform: scale(.96);
+  }
+}
+
+.success.inversion {
+  background: #62ea79;
+  color: #fff;
+}
+
+.simple {
+  border: 2px solid #000000;
+
+  &:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+
+  &:active {
+    transform: scale(.96);
+  }
+}
+
+.simple.inversion {
+  background: #000000;
+  color: #ffffff;
+}
