@@ -4,9 +4,14 @@ const keys = require('./keys')
 
 const app = express()
 
+app.use('/api/auth', require('./routes/auth'))
+
 const connect = async () => {
 	try {
-		await mongoose.connect(keys.MONGO_URI);
+		await mongoose.connect(keys.MONGO_URI, {
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+		});
 		app.listen(keys.PORT, () => {
 			console.log(`Server run, port: ${keys.PORT}`)
 		})
