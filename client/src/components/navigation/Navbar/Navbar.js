@@ -11,6 +11,10 @@ const Navbar = () => {
 	]
 
 	if (isAuth) {
+		links.push({to: '/create', label: 'Создать', exact: false})
+		links.push({to: '/profile', label: 'Профиль', exact: false})
+		links.push({to: '/cart', label: 'Корзина', exact: false})
+		links.push({to: '/orders', label: 'Заказы', exact: false})
 		links.push({to: '/logout', label: 'Выйти', exact: false})
 	} else {
 		links.push({to: '/auth#login', label: 'Авторизация', exact: false})

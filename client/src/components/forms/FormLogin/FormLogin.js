@@ -8,6 +8,7 @@ import {useMessage} from "../../../hooks/useMessage";
 import {useHistory} from 'react-router-dom'
 import {MESSAGES} from "../../../constants";
 import {AuthContext} from "../../../context/auth/AuthContext";
+import {getValueFields} from "../../../other/utils";
 
 
 function createFormControls() {
@@ -32,12 +33,13 @@ const FormLogin = () => {
 
 	const loginHandler = useCallback(async () => {
 		try {
-			const {email, password} = formControls
-			const data = await request('/api/auth/login', 'POST', {email: email.value, password: password.value})
+			const {email, password} = getValueFields(formControls)
+			const data = await request('/api/auth/login', 'POST', {email, password})
 			login(data.token, data.userId);
 			history.push('/')
 			message(MESSAGES.USER_SIGN_IN, 'success');
-		} catch (e) {}
+		} catch (e) {
+		}
 	}, [request, formControls])
 
 	return (

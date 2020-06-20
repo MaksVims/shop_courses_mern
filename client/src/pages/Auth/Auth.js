@@ -12,7 +12,7 @@ const Auth = () => {
 	const selectHandler = useCallback(tab => window.location.hash = tab, [] )
 
 	return (
-		<section className={'Auth'}>
+		<section className={'Auth page'}>
 			<div className="mt-3 d-flex flex-column align-items-center">
 				<Tabs
 					defaultActiveKey={'login'}
