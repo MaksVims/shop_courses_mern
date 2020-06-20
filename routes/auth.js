@@ -53,12 +53,13 @@ route.post('/register', registerValidators, async (req, res) => {
 	}
 	try {
 		const {name, email, password} = req.body;
+		const hashPassword =  await bcrypt.hash(password, 10);
 		const user = new User({
-			name, email, password, cart: {items: []}
+			name, email, password: hashPassword, cart: {items: []}
 		})
 
 		await user.save()
-		return res.status(successData.USER_REGISTER.code)
+		return res.status(successData.USER_REGISTER.code).json({user})
 
 	} catch (e) {
 		res.status(errorsData.COMMON.code).json({message: errorsData.COMMON.message})

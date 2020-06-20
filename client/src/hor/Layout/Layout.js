@@ -1,12 +1,16 @@
 import React from 'react'
+import Alert from "../../components/Alert/Alert";
 
 const Layout = ({children}) => {
   return (
-    <div className="container">
-    	<main>
-				{children}
-			</main>
-    </div>
+   	<>
+			<Alert />
+			<div className="container">
+				<main>
+					{children}
+				</main>
+			</div>
+		</>
   )
 }
 

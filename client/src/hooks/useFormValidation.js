@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useCallback, useState} from "react";
 import {clone} from "../other/utils";
 import {checkValidControl, checkValidForm} from "../other/validation";
 
@@ -6,7 +6,7 @@ export function useFormValidation(controlConfig) {
 	const [formControls, setFormControls] = useState(controlConfig());
 	const [isValidForm, setIsValidForm] = useState(false)
 
-	const changeHandler = (value, controlName) => {
+	const changeHandler = useCallback((value, controlName) => {
 		const copyFormControls = clone(formControls)
 		const control = copyFormControls[controlName];
 		control.value = value;
@@ -16,7 +16,9 @@ export function useFormValidation(controlConfig) {
 
 		setFormControls(copyFormControls);
 		setIsValidForm(checkValidForm(copyFormControls));
-	}
+	}, [formControls, checkValidForm])
 
-	return {formControls, isValidForm, changeHandler}
+	const resetFormControls = useCallback(() => setFormControls(controlConfig()), [controlConfig])
+
+	return {formControls, isValidForm, changeHandler, resetFormControls}
 }
