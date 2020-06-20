@@ -4,6 +4,7 @@ const keys = require('./keys')
 
 const app = express()
 
+app.use(express.json({extends: true}));
 app.use('/api/auth', require('./routes/auth'))
 
 const connect = async () => {
