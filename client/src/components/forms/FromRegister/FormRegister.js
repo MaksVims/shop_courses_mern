@@ -1,9 +1,11 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useEffect} from 'react'
 import Form from "../../UI/Form/Form";
 import {createControl, createInputs} from "../../../other/validation";
 import {useFormValidation} from "../../../hooks/useFormValidation";
 import Button from "../../UI/Button/Button";
 import {useHttp} from "../../../hooks/useHttp";
+import {useMessage} from "../../../hooks/useMessage";
+import {MESSAGES} from "../../../constants";
 
 function createFormControls() {
 	return {
@@ -17,20 +19,29 @@ function createFormControls() {
 	}
 }
 
-const FormRegister = () => {
-	const {formControls, isValidForm, changeHandler} = useFormValidation(createFormControls)
-	const {request, error} = useHttp()
+const FormRegister = ({onRegister}) => {
+	const {formControls, isValidForm, changeHandler, resetFormControls} = useFormValidation(createFormControls)
+	const {request, error, clearError} = useHttp()
+	const message = useMessage()
+
+	useEffect(() => {
+		message(error)
+		clearError()
+	}, [error, clearError])
 
 	const registerHandler = useCallback(async () => {
 		try {
 			const {email, password, name, repeat} = formControls
 			const data = await request('/api/auth/register', 'POST',
 				{email: email.value, password: password.value, name: name.value, repeat: repeat.value})
-			console.log(data)
-			console.log(error)
-		} catch (e) {}
+			if (data) {
+				message(MESSAGES.USER_REGISTER, 'success')
+				onRegister('login')
+				resetFormControls()
+			}
+		} catch (e) {
+		}
 	}, [request, formControls])
-
 
 	return (
 		<Form>

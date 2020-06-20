@@ -14,7 +14,7 @@ const registerValidators = [
 			try {
 				const user = await User.findOne({email})
 				if (user){
-					return new Promise.reject(errors.EMAIL_EXIST.message)
+					return Promise.reject(errors.EMAIL_EXIST.message)
 				}
 				return true;
 			} catch (e) {throw e}

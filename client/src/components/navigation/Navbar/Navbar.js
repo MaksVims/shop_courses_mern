@@ -1,13 +1,21 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import './Navbar.scss'
 import {NavLink} from 'react-router-dom'
+import {AuthContext} from "../../../context/auth/AuthContext";
 
 const Navbar = () => {
+	const {isAuth} = useContext(AuthContext)
 	const links = [
 		{to: '/', label: 'Главная', exact: true},
 		{to: '/courses', label: 'Курсы', exact: false},
-		{to: '/auth', label: 'Авторизация', exact: false}
 	]
+
+	if (isAuth) {
+		links.push({to: '/logout', label: 'Выйти', exact: false})
+	} else {
+		links.push({to: '/auth#login', label: 'Авторизация', exact: false})
+	}
+
 
 	const createLinks = () => {
 		return links.map(link => (

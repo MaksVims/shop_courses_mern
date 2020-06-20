@@ -10,7 +10,7 @@ const Input = props => {
 		type = 'text', value = '', onChange = f => f,
 		label = '', errorMessage = 'Что то пошло не так', placeholder = ''
 	} = props
-	const id = Date.now()
+	const id = Date.now() + label
 	const isInvalid = isInvalidInput(props);
 	const cls = [classes.Input]
 	if (isInvalid) {

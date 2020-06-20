@@ -1,0 +1,30 @@
+.Alert {
+  position: absolute;
+  left: 150px;
+  right: 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 10px;
+  top: 7%;
+  font-size: 20px;
+  border-radius: 5px;
+  height: 29px;
+  transform: translateY(-500px);
+
+  i {
+    cursor: pointer;
+  }
+}
+
+.open {
+  transform: translateY(0);
+}
+
+.error {
+  background: rgba(245, 127, 127, 0.75);
+}
+
+.success {
+  background: rgba(196, 245, 127, 0.75);
+}
