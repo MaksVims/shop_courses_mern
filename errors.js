@@ -8,6 +8,7 @@ module.exports = {
 	EMAIL_NOT_EXIST: {code:  VALIDATION_ERROR, message: 'Пользователь не найден'},
 	EMAIL_INCORRECT: {code:  VALIDATION_ERROR, message: 'Введите корректный email'},
 	PASSWORD_INCORRECT: {code:  VALIDATION_ERROR, message: 'Введите пароль'},
+	PASSWORD_NOT_ALPHANUMERIC: {code:  VALIDATION_ERROR, message: 'Пароль должен состоять из букв и цифр'},
 	PASSWORD_NOT_SAME: {code:  VALIDATION_ERROR, message: 'Неверный пароль'},
 	PASSWORD_MINLENGTH: {code:  VALIDATION_ERROR, message: 'Длина пароля не меньше 6 символов'},
 	REPEAT_INCORRECT: {code:  VALIDATION_ERROR, message: 'Введенные пароли не совпадают'},

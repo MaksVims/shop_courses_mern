@@ -14,6 +14,7 @@ const route = new Router()
 route.post('/login', loginValidators, async (req, res) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
+		console.log(errors)
 		return res.status(errorsData.VALIDATION_ERROR.code)
 			.json({message: errors.array()[0].msg})
 	}
@@ -48,6 +49,7 @@ route.post('/login', loginValidators, async (req, res) => {
 route.post('/register', registerValidators, async (req, res) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
+		console.log(errors)
 		return res.status(errorsData.VALIDATION_ERROR.code)
 			.json({message: errors.array()[0].msg})
 	}

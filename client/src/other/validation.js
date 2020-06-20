@@ -31,7 +31,6 @@ export function checkValidControl(value, validation = null) {
 	let valid = true;
 
 	if (validation.required) {
-		console.log('!')
 		valid = value.trim() !== '' && valid;
 	}
 
