@@ -5,7 +5,10 @@ const keys = require('./keys')
 const app = express()
 
 app.use(express.json({extends: true}));
+
+app.use('/api/courses', require('./routes/courses'))
 app.use('/api/auth', require('./routes/auth'))
+app.use('/api/course', require('./routes/course'))
 
 const connect = async () => {
 	try {

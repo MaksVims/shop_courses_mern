@@ -1,13 +1,13 @@
 const {Router} = require('express')
-const errorsData = require('../errors')
-const successData = require('../success')
-const User = require('../models/User')
+const {validationResult} = require('express-validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const errorsData = require('../errors')
+const successCodes = require('../successCodes')
+const User = require('../models/User')
 const keys = require('../keys')
-const {validationResult} = require('express-validator')
-
 const {loginValidators, registerValidators} = require('../validation/authValidation')
+
 
 const route = new Router()
 
@@ -53,13 +53,13 @@ route.post('/register', registerValidators, async (req, res) => {
 	}
 	try {
 		const {name, email, password} = req.body;
-		const hashPassword =  await bcrypt.hash(password, 10);
+		const hashPassword = await bcrypt.hash(password, 10);
 		const user = new User({
 			name, email, password: hashPassword, cart: {items: []}
 		})
 
 		await user.save()
-		return res.status(successData.USER_REGISTER.code).json({user})
+		return res.status(successCodes.CREATE).json({user})
 
 	} catch (e) {
 		res.status(errorsData.COMMON.code).json({message: errorsData.COMMON.message})

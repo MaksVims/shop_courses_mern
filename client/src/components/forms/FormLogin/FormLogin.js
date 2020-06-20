@@ -9,6 +9,7 @@ import {useHistory} from 'react-router-dom'
 import {MESSAGES} from "../../../constants";
 import {AuthContext} from "../../../context/auth/AuthContext";
 import {getValueFields} from "../../../other/utils";
+import {useMessageError} from "../../../hooks/useMessageErrors";
 
 
 function createFormControls() {
@@ -25,11 +26,7 @@ const FormLogin = () => {
 	const message = useMessage()
 	const {login} = useContext(AuthContext)
 	const history = useHistory();
-
-	useEffect(() => {
-		message(error)
-		clearError()
-	}, [error, message])
+	useMessageError(error, message, clearError);
 
 	const loginHandler = useCallback(async () => {
 		try {
@@ -40,7 +37,7 @@ const FormLogin = () => {
 			message(MESSAGES.USER_SIGN_IN, 'success');
 		} catch (e) {
 		}
-	}, [request, formControls])
+	}, [request, formControls, history, login, message])
 
 	return (
 		<Form>

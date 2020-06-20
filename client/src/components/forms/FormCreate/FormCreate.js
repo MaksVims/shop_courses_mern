@@ -35,7 +35,7 @@ const FormCreate = () => {
 
 			}
 		} catch (e) {}
-	}, [])
+	}, [request, formControls])
 
 		return (
 			<Form>

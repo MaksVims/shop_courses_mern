@@ -25,7 +25,7 @@ export function useAuth() {
 			login(data.token, data.userId)
 		}
 		setReady(true)
-	})
+	}, [login])
 
 	return {token, userId, ready, login, logout}
 }
