@@ -1,19 +1,20 @@
 .Input {
   width: 100%;
-  margin: 5px 0 15px;
+  margin: 5px 0 30px;
   input {
     height: 32px;
     outline: none;
     border: 1.4px solid grey;
     border-radius: 4px;
+    margin-top: 5px;
     padding: 4px 6px;
-    margin-top: 10px;
     font-weight: bold;
     display: block;
     width: 100%;
   }
 
   label {
+    margin: 0;
     font-weight: bold;
     font-size: 18px;
   }
@@ -21,4 +22,5 @@
 
 .error {
   color: rgba(231, 61, 61, 0.95);
+  margin: 3px 0 7px;
 }

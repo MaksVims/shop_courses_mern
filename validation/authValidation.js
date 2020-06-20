@@ -3,7 +3,7 @@ const User = require('../models/User')
 const errors = require('../errors')
 
 const loginValidators = [
-	check('email', errors.EMAIL_INCORRECT.message).normalizeEmail().isEmail(),
+	check('email', errors.EMAIL_INCORRECT.message).isEmail(),
 	check('password', errors.PASSWORD_INCORRECT.message).trim().exists()
 ]
 
@@ -19,7 +19,8 @@ const registerValidators = [
 				return true;
 			} catch (e) {throw e}
 		}),
-	check('password', errors.PASSWORD_MINLENGTH.message).isLength({min: 6}).isAlphanumeric(),
+	check('password', errors.PASSWORD_MINLENGTH.message).isLength({min: 6}),
+	check('password', errors.PASSWORD_NOT_ALPHANUMERIC.message).isAlphanumeric(),
 	check('repeat').custom((repeat, {req}) => {
 		if (repeat === req.body.password) {
 			return true
