@@ -11,7 +11,7 @@ const Logout = () => {
 
 	useEffect(() => {
 		message(MESSAGES.USER_OUT_SESSION)
-	}, [])
+	}, [message])
 
 	logout()
 

@@ -16,7 +16,7 @@ export function useFormValidation(controlConfig) {
 
 		setFormControls(copyFormControls);
 		setIsValidForm(checkValidForm(copyFormControls));
-	}, [formControls, checkValidForm])
+	}, [formControls])
 
 	const resetFormControls = useCallback(() => setFormControls(controlConfig()), [controlConfig])
 

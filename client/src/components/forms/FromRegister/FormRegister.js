@@ -7,6 +7,7 @@ import {useHttp} from "../../../hooks/useHttp";
 import {useMessage} from "../../../hooks/useMessage";
 import {MESSAGES} from "../../../constants";
 import {getValueFields} from "../../../other/utils";
+import {useMessageError} from "../../../hooks/useMessageErrors";
 
 function createFormControls() {
 	return {
@@ -24,11 +25,7 @@ const FormRegister = ({onRegister}) => {
 	const {formControls, isValidForm, changeHandler, resetFormControls} = useFormValidation(createFormControls)
 	const {request, error, clearError} = useHttp()
 	const message = useMessage()
-
-	useEffect(() => {
-		message(error)
-		clearError()
-	}, [error, clearError])
+	useMessageError(error, message, clearError);
 
 	const registerHandler = useCallback(async () => {
 		try {
@@ -41,7 +38,7 @@ const FormRegister = ({onRegister}) => {
 			}
 		} catch (e) {
 		}
-	}, [request, formControls])
+	}, [request, formControls, resetFormControls, onRegister, message])
 
 	return (
 		<Form>

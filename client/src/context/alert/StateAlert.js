@@ -20,9 +20,9 @@ const StateAlert = ({children}) => {
 	const show = useCallback(({text, theme = 'error', ms = 4000}) => {
 		dispatch({type: 'SHOW', payload: {text, theme}})
 		setTimeout(hide, ms)
-	}, [])
+	}, [hide])
 
-	const valueAlertContext = useMemo(() => ({show, hide, alert: state}), [state, show, state])
+	const valueAlertContext = useMemo(() => ({show, hide, alert: state}), [state, show, hide])
 
 	return (
 		<AlertContext.Provider value={valueAlertContext}>
