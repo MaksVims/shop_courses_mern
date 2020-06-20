@@ -6,6 +6,7 @@ import Button from "../../UI/Button/Button";
 import {useHttp} from "../../../hooks/useHttp";
 import {useMessage} from "../../../hooks/useMessage";
 import {MESSAGES} from "../../../constants";
+import {getValueFields} from "../../../other/utils";
 
 function createFormControls() {
 	return {
@@ -31,9 +32,8 @@ const FormRegister = ({onRegister}) => {
 
 	const registerHandler = useCallback(async () => {
 		try {
-			const {email, password, name, repeat} = formControls
-			const data = await request('/api/auth/register', 'POST',
-				{email: email.value, password: password.value, name: name.value, repeat: repeat.value})
+			const {email, password, name, repeat} = getValueFields(formControls)
+			const data = await request('/api/auth/register', 'POST', {email, password, name, repeat})
 			if (data) {
 				message(MESSAGES.USER_REGISTER, 'success')
 				onRegister('login')

@@ -1,8 +1,8 @@
 .Input {
   width: 100%;
   margin: 5px 0 30px;
-  input {
-    height: 32px;
+
+  input, textarea {
     outline: none;
     border: 1.4px solid grey;
     border-radius: 4px;
@@ -11,6 +11,10 @@
     font-weight: bold;
     display: block;
     width: 100%;
+  }
+
+  input {
+    height: 32px;
   }
 
   label {

@@ -7,7 +7,7 @@ function isInvalidInput({valid, touched, shouldValidate}) {
 
 const Input = props => {
 	const {
-		type = 'text', value = '', onChange = f => f,
+		type = 'text', value = '', onChange = f => f, tag = 'input',
 		label = '', errorMessage = 'Что то пошло не так', placeholder = ''
 	} = props
 	const id = Date.now() + label
@@ -20,14 +20,24 @@ const Input = props => {
 	return (
 		<div className={cls.join(' ') + ' form-group'}>
 			<label htmlFor={id}>{label}</label>
-			<input
-				type={type}
-				id={id}
-				value={value}
-				placeholder={placeholder}
-				onChange={onChange}
-				className={'form-control'}
-			/>
+			{tag === 'input'
+				? <input
+						type={type}
+						id={id}
+						value={value}
+						placeholder={placeholder}
+						onChange={onChange}
+						className={'form-control'}
+					/>
+				: <textarea
+					value={value}
+					id={id}
+					placeholder={placeholder}
+					onChange={onChange}
+					className={'form-control'}
+					rows={4}
+				>{value}</textarea>
+			}
 			{isInvalid ? <small>{errorMessage}</small> : null}
 		</div>
 	)
