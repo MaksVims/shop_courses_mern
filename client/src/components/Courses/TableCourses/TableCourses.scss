@@ -1,0 +1,24 @@
+.table-courses {
+
+  .read-course:hover {
+    transition: color .22s ease-in-out;
+    cursor: pointer;
+    color: #0275d8;
+  }
+
+  .row-icon {
+    display: flex;
+    justify-content: center;
+
+    i {
+      cursor: pointer;
+      transition: color .22s ease-in-out;
+    }
+
+    i.fa-plus {
+      &:hover {
+        color: #62ea79;
+      }
+    }
+  }
+}

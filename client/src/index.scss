@@ -24,3 +24,17 @@ ul, ol, li {
   margin: 0;
   padding: 0;
 }
+
+.page {
+  margin-top: 1.5rem;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 480px){
+  .page {
+    h1 {
+      text-align: center;
+      font-size: 24px;
+    }
+  }
+}

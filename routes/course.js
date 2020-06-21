@@ -31,7 +31,9 @@ route.post('/create', authJWT, courseValidation, async (req, res) => {
 
 route.get('/:id', async (req, res) => {
 	try {
-		const course = await Course.findById(req.params.id);
+		const course = await Course.findById(req.params.id)
+			.populate('userId').exec();
+
 		if (course) {
 			res.json({course})
 		} else {
