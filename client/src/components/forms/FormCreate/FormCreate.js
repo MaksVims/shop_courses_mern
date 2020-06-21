@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react'
+import React, {useCallback, useContext, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import Form from "../../UI/Form/Form";
 import {createControl, createInputs} from "../../../other/validation";
@@ -10,6 +10,7 @@ import {getValueFields} from "../../../other/utils";
 import {useMessage} from "../../../hooks/useMessage";
 import {useMessageError} from "../../../hooks/useMessageErrors";
 import {MESSAGES} from "../../../constants";
+import {AuthContext} from "../../../context/auth/AuthContext";
 
 function createFormControls() {
 	return {
@@ -26,7 +27,7 @@ const FormCreate = () => {
 	const {formControls, isValidForm, changeHandler} = useFormValidation(createFormControls)
 	const history = useHistory();
 	const message = useMessage();
-	const {token} = useAuth()
+	const {token} = useContext(AuthContext)
 	const {request, error, clearError} = useHttp()
 	useMessageError(error, message, clearError);
 
@@ -44,20 +45,21 @@ const FormCreate = () => {
 				history.push('/courses')
 				message(MESSAGES.CREATE_COURSE, 'success');
 			}
-		} catch (e) {}
+		} catch (e) {
+		}
 	}, [request, formControls, token, history, message])
 
-		return (
-			<Form>
-				{createInputs(formControls, changeHandler)}
-				<Button
-					label='Создать курс'
-					className={'primary'}
-					disabled={!isValidForm}
-					onClick={createHandler}
-				/>
-			</Form>
-		)
-	}
+	return (
+		<Form>
+			{createInputs(formControls, changeHandler)}
+			<Button
+				label='Создать курс'
+				className={'primary'}
+				disabled={!isValidForm}
+				onClick={createHandler}
+			/>
+		</Form>
+	)
+}
 
 export default FormCreate

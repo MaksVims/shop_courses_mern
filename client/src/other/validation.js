@@ -5,9 +5,9 @@ import isEmail from 'validator/es/lib/isEmail'
 export function createControl(config, validation = null) {
 	return {
 		value: '',
-		...config,
 		touched: false,
 		valid: !validation,
+		...config,
 		validation
 	}
 }
