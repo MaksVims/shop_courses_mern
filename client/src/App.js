@@ -8,11 +8,11 @@ import {AuthContext} from "./context/auth/AuthContext";
 import StateAlert from "./context/alert/StateAlert";
 
 function App() {
-	const {ready, token, logout, login} = useAuth()
+	const {ready, token, logout, login, userId} = useAuth()
 	const isAuth = !!token
 	const routes = useRoutes(isAuth)
-	const valueAuthContext = useMemo(() => ({ready, token, logout, login, isAuth}),
-		[ready, token, logout, login, isAuth])
+	const valueAuthContext = useMemo(() => ({ready, token, logout, login, isAuth, userId}),
+		[ready, token, logout, login, isAuth, userId])
 	return (
 		<AuthContext.Provider value={valueAuthContext}>
 			<StateAlert>

@@ -9,6 +9,8 @@ import Cart from "../pages/Cart/Cart";
 import Profile from "../pages/Profile/Profile";
 import Orders from "../pages/Orders/Orders";
 import CreateCourse from "../pages/CreateCourse/CreateCourse";
+import Course from "../pages/Course/Course";
+import CourseEdit from "../pages/CourseEdit/CourseEdit";
 
 export const useRoutes = (isAuth) => {
 	if (isAuth) {
@@ -19,6 +21,12 @@ export const useRoutes = (isAuth) => {
 				</Route>
 				<Route path={'/courses'}>
 					<Courses />
+				</Route>
+				<Route path={'/course/edit/:id'}>
+					<CourseEdit />
+				</Route>
+				<Route path={'/course/:id'}>
+					<Course />
 				</Route>
 				<Route path={'/create'}>
 					<CreateCourse />

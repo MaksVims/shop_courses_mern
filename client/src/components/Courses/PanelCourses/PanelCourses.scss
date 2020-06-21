@@ -1,0 +1,15 @@
+.panel-courses {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+
+  i {
+    font-size: 24px;
+    margin-left: 15px;
+    cursor: pointer;
+  }
+
+  i.active {
+    color: #0275d8;
+  }
+}

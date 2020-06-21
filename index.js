@@ -12,9 +12,11 @@ app.use('/api/course', require('./routes/course'))
 
 const connect = async () => {
 	try {
+		mongoose.set('useCreateIndex', true)
 		await mongoose.connect(keys.MONGO_URI, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
+			useFindAndModify: false
 		});
 		app.listen(keys.PORT, () => {
 			console.log(`Server run, port: ${keys.PORT}`)

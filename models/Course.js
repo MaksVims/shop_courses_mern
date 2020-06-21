@@ -5,7 +5,8 @@ const courseSchema = new Schema({
 	price: {type: Number, required: true, minValue: 1},
 	imgUrl: {type: String},
 	description: {type:String},
-	userId: {type: Types.ObjectId, ref: 'User', required: true}
+	userId: {type: Types.ObjectId, ref: 'User', required: true},
+	dateCreate: {type:Date, default:Date.now}
 })
 
 module.exports = model('Course', courseSchema)

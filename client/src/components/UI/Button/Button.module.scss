@@ -63,6 +63,12 @@
   }
 }
 
+.warning.inversion {
+  background: #e2ac29;
+  color: #000;
+}
+
+
 .danger {
   border: 2px solid rgba(231, 61, 61, 0.95);
 
@@ -74,6 +80,11 @@
   &:active {
     transform: scale(.96);
   }
+}
+
+.danger.inversion {
+  background: rgba(231, 61, 61, 0.95);
+  color: #fff;
 }
 
 .success {

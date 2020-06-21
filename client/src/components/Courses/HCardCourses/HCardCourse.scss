@@ -1,0 +1,32 @@
+.horizontal-card-course {
+  transition: border, box-shadow, .22s ease-in-out;
+  margin: 2rem auto;
+  height: 240px;
+
+  .row.no-gutters {
+    height: 240px;
+  }
+
+  &:hover {
+    border: 1px solid grey;
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,.15);
+  }
+
+  .card-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .btn-panel {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .card-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

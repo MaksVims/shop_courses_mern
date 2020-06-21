@@ -4,10 +4,19 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from "react-router-dom";
+import {createStore, applyMiddleware, compose} from "redux";
+import {Provider} from "react-redux";
+import rootReducer from "./store/reducers/rootReducer";
+
+
+const store = createStore(rootReducer, compose(applyMiddleware(),
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
 
 ReactDOM.render(
 	<BrowserRouter>
+		<Provider store={store}>
 			<App/>
+		</Provider>
 	</BrowserRouter>
 	,
 	document.getElementById('root')

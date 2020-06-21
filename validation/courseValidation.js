@@ -1,5 +1,5 @@
 const {check} = require('express-validator')
-const {isUrl} = require('validator')
+const isUrl = require('validator/lib/isURL')
 const errorsData = require('../errors')
 
 //title, price, imgUrl, description
