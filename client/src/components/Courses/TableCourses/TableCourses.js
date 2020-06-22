@@ -16,7 +16,7 @@ const TableCourses = (props) => {
 				<th scope="col">Цена</th>
 				<th scope="col">Автор</th>
 				<th scope="col">Дата создания</th>
-				{isAuth ? <th scope="col"></th> : null}
+				{isAuth ? <th scope="col">Добавить</th> : null}
 			</tr>
 			</thead>
 			<tbody>

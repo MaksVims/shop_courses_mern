@@ -1,18 +1,23 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react'
+import React, {useCallback, useContext, useEffect, useMemo, useState} from 'react'
 import _ from 'lodash'
 import {useSelector, shallowEqual} from "react-redux";
 import {useHistory} from 'react-router-dom'
 import Loader from "../../components/Loader/Loader";
 import CoursesList from "../../components/Courses/CoursesList/CoursesList";
 import {useHttp} from "../../hooks/useHttp";
+import {AuthContext} from "../../context/auth/AuthContext";
+import {useMessage} from "../../hooks/useMessage";
+import {MESSAGES} from "../../constants";
 
 
 const Courses = () => {
-	const {request, loading} = useHttp()
-	const history = useHistory()
-	const [courses, setCourses] = useState([])
 	const [filteredCourses, setFilteredCourses] = useState([])
+	const [courses, setCourses] = useState([])
 	const {duration, filter} = useSelector(state => state.courses, shallowEqual)
+	const history = useHistory()
+	const {request, loading} = useHttp()
+	const {token} = useContext(AuthContext)
+	const message = useMessage()
 
 	const fetchCourses = useCallback(async () => {
 		try {
@@ -43,12 +48,19 @@ const Courses = () => {
 		history.push(`/course/${id}`);
 	}, [history])
 
-	const addToCart = useCallback(id => {
-
-	}, [])
+	const addToCart = useCallback(async id => {
+		try {
+			const data = await request('/api/cart/addCourse', 'POST', {id}, {
+				authorization: `Bearer ${token}`
+			}, false)
+			if (data) {
+				message(MESSAGES.COURSE_ADD_TO_CART, 'success')
+			}
+		} catch (e) {}
+	}, [message, request, token])
 
 	const handlers = useMemo(() => ({readCourseHandler, editCourseHandler, addToCart}),
-		[readCourseHandler,editCourseHandler, addToCart])
+		[readCourseHandler, editCourseHandler, addToCart])
 
 	return (
 		<section className={'page'}>

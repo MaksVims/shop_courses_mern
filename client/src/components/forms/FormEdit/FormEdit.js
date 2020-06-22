@@ -54,7 +54,7 @@ const FormEdit = (props) => {
 			}
 		} catch (e) {
 		}
-	}, [history, message, request, MESSAGES])
+	}, [history, message, request, MESSAGES, token, id])
 
 	const editHandler = useCallback(async () => {
 		const {title, price, imgUrl, description} = getValueFields(formControls);
@@ -69,7 +69,7 @@ const FormEdit = (props) => {
 			}
 		} catch (e) {
 		}
-	}, [request, history, message, MESSAGES, id])
+	}, [request, history, message, MESSAGES, id, formControls, token])
 
 	return (
 		<Form>

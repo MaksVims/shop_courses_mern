@@ -48,6 +48,10 @@
 .primary.inversion {
   background: #3677e2;
   color: #fff;
+
+  &:hover {
+    background: #364de2;
+  }
 }
 
 .warning {
@@ -66,6 +70,10 @@
 .warning.inversion {
   background: #e2ac29;
   color: #000;
+
+  &:hover {
+    background: #e2a429;
+  }
 }
 
 
@@ -85,6 +93,10 @@
 .danger.inversion {
   background: rgba(231, 61, 61, 0.95);
   color: #fff;
+
+  &:hover {
+    background: rgb(203, 15, 15);
+  }
 }
 
 .success {
@@ -121,4 +133,10 @@
 .simple.inversion {
   background: #000000;
   color: #ffffff;
+
+  &:hover {
+    background: #575151;
+  }
 }
+
+
