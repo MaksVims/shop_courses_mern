@@ -6,8 +6,10 @@ export const useHttp = () => {
 
 	const clearError = useCallback(() => setError(null), [])
 
-	const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
-		setLoading(true)
+	const request = useCallback(async (url, method = 'GET', body = null, headers = {}, loader = true) => {
+		if (loader) {
+			setLoading(true)
+		}
 		if (body) {
 			body = JSON.stringify(body);
 			headers['Content-Type'] = 'application/json';

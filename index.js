@@ -9,6 +9,8 @@ app.use(express.json({extends: true}));
 app.use('/api/courses', require('./routes/courses'))
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/course', require('./routes/course'))
+app.use('/api/cart', require('./routes/cart'))
+app.use('/api/order', require('./routes/order'))
 
 const connect = async () => {
 	try {
