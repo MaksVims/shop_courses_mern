@@ -1,4 +1,5 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import {useHttp} from "../../hooks/useHttp";
 import Loader from "../../components/Loader/Loader";
 import {AuthContext} from "../../context/auth/AuthContext";
@@ -12,6 +13,7 @@ import {MESSAGES} from "../../constants";
 
 const Cart = () => {
 	const [cart, setCart] = useState(null)
+	const history = useHistory()
 	const {request, loading, error, clearError} = useHttp()
 	const {token} = useContext(AuthContext)
 	const message = useMessage()
@@ -40,7 +42,16 @@ const Cart = () => {
 		}
 	}, [request, token, message, MESSAGES])
 
-
+	const createOrder = useCallback(async () => {
+		try {
+			await request('/api/order/create', 'POST', null, {
+				authorization: `Bearer ${token}`
+			})
+			message(MESSAGES.ORDER_CREATE, 'success');
+			history.push('/orders')
+		} catch (e) {
+		}
+	}, [request, token, history])
 
 	useEffect(() => {
 		fetchCart()
@@ -58,6 +69,7 @@ const Cart = () => {
 						<div className="cart-footer">
 							<span className="badge badge-info">Итого: {convertToCurrency(cart.totalPrice)}</span>
 							<Button
+								onClick={createOrder}
 								className="primary"
 								label={'Офомить заказ'}
 							/>

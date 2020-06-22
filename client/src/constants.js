@@ -6,5 +6,6 @@ export const MESSAGES = {
 	EDIT_COURSE: 'Изменения сохранены',
 	DELETE_COURSE: 'Курс удален',
 	COURSE_ADD_TO_CART: 'Курс добавлен в корзину',
-	COURSE_DELETE_TO_CART: 'Курс удален из корзины'
+	COURSE_DELETE_TO_CART: 'Курс удален из корзины',
+	ORDER_CREATE: 'Сделан заказ'
 }
