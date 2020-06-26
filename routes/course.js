@@ -18,7 +18,8 @@ route.post('/create', authJWT, courseValidation, async (req, res) => {
 	try {
 		const {title, price, imgUrl, description} = req.body
 		const course = new Course({
-			title, price, imgUrl, description, userId: req.user.userId
+			title, price, imgUrl, description, userId: req.user.userId,
+			favorites: []
 		})
 
 		await course.save()
@@ -65,6 +66,28 @@ route.post('/delete', authJWT, async (req, res) => {
 	try {
 		const {id} = req.body;
 		await Course.deleteOne({_id: id});
+		res.json({})
+	} catch (e) {
+		res.status(errorsData.COMMON.code).json({message: errorsData.COMMON.message})
+	}
+})
+
+route.post('/rem_favorite', authJWT, async (req, res) => {
+	try {
+		const course = await Course.findOne({_id: req.body.id})
+		await course.removeToFavorites(req.user.userId)
+
+		res.json({})
+	} catch (e) {
+		res.status(errorsData.COMMON.code).json({message: errorsData.COMMON.message})
+	}
+})
+
+route.post('/add_favorite', authJWT, async (req, res) => {
+	try {
+		const course = await Course.findOne({_id: req.body.id})
+		await course.addToFavorites(req.user.userId)
+
 		res.json({})
 	} catch (e) {
 		res.status(errorsData.COMMON.code).json({message: errorsData.COMMON.message})

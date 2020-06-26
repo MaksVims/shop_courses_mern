@@ -47,7 +47,9 @@ const Course = () => {
 							<div className="card-footer-btnWrapper">
 								<div>
 									<p>Автор: {course.userId.name}</p>
-									<p>Email: ${course.userId.email}</p>
+									<p>Email: {course.userId.email}</p>
+									<p>Приобрели: {course.buysCount}</p>
+									<p>Рейтинг: {course.favorites.length}</p>
 								</div>
 								<Button
 									label={'Добавить в корзину'}
