@@ -4,11 +4,13 @@ import {formatDate, convertToCurrency} from "../../../other/utils";
 import Button from "../../UI/Button/Button";
 import {AuthContext} from "../../../context/auth/AuthContext";
 import Like from "../../Like/Like";
+import {useAddToCart} from "../../../hooks/useAddToCart";
 
 const HCardCourses = (props) => {
 	const {title, price, imgUrl, dateCreate, _id, userId: {_id: id}, favorites} = props
-	const {readCourseHandler, editCourseHandler, addToCart} = props
+	const {readCourseHandler, editCourseHandler} = props
 	const {isAuth, userId} = useContext(AuthContext)
+	const addToCart = useAddToCart('/api/cart/addCourse')
 	const same = userId === id;
 
 	const isActive = useCallback(() => {

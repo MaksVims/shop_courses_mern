@@ -8,7 +8,7 @@ import ProfileContent from "../ProfileContent/ProfileContent";
 
 const ProfileView = (props) => {
 	const {profile, handlers} = props
-	const {user, makeOrders} = profile
+	const {user, info} = profile
 	const {open, closeModal, openModal} = useModal()
 
 	return (
@@ -18,7 +18,7 @@ const ProfileView = (props) => {
 				user={user}
 				openModal={openModal}
 			/>
-			<ProfileInfo/>
+			<ProfileInfo data={info}/>
 			<Modal
 				className={'Overlay'}
 				open={open}

@@ -60,6 +60,9 @@ export const useRoutes = (isAuth) => {
 				<Route path={'/auth'} exact>
 					<Auth />
 				</Route>
+				<Route path={'/course/:id'}>
+					<Course />
+				</Route>
 				<Route>
 					<Error404 />
 				</Route>

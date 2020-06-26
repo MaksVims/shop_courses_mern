@@ -3,16 +3,29 @@ const authJWT = require('../middleWare/authJWT')
 const User = require('../models/User')
 const Order = require('../models/Order')
 const errorsData = require("../errors");
+const Course = require('../models/Course')
+const {mapOrders} = require('./helpers')
+
 
 const route = new Router()
 
 route.post('/', authJWT, async (req, res) => {
 	try {
 		const user = await User.findOne({_id: req.user.userId})
-		const orders = await Order.find({userId: req.user.userId})
+		let orders = await Order.find({userId: req.user.userId})
 
 		if (user) {
-			res.json({user, makeOrders: orders.length})
+			const userCourses = await Course.find({userId: user._id})
+			orders = mapOrders(orders);
+
+			const info = {
+				makeOrders: orders.length,
+				courseCreate: userCourses.length,
+				totalSummary: orders.reduce((acc, cur) => acc += cur.totalPrice, 0),
+				likes: user.favoriteCourses.length
+			}
+
+			res.json({user, info})
 		}
 
 	} catch (e) {
