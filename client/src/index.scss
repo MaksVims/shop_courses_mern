@@ -30,6 +30,26 @@ ul, ol, li {
   margin-bottom: 10px !important;
 }
 
+.Overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,.8);
+}
+
+.Modal {
+  $height: height;
+  background: #fff;
+  border-radius: 20px;
+  width: 500px;
+  padding: 25px;
+  outline: none;
+  margin: 20% auto;
+}
+
+
 @media screen and (max-width: 480px){
   .page {
     h1 {

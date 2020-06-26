@@ -6,20 +6,35 @@ export const useHttp = () => {
 
 	const clearError = useCallback(() => setError(null), [])
 
-	const request = useCallback(async (url, method = 'GET', body = null, headers = {}, loader = true) => {
+	let repeatRequestCounter = 0;
+
+	const request = useCallback(
+		async (url, method = 'GET', body = null, headers = {}, loader = true, file = false) => {
 		if (loader) {
 			setLoading(true)
 		}
-		if (body) {
+
+		if (body && !file) {
 			body = JSON.stringify(body);
 			headers['Content-Type'] = 'application/json';
 		}
+
+		if (body && file) {
+			console.log(body)
+		}
+
 		try {
 			const response = await fetch(url, {method, body, headers})
 			const data = await response.json();
 
 			if (!response.ok) {
-				throw new Error(data.message);
+				if (repeatRequestCounter !== 2) {
+					repeatRequestCounter++;
+					await request(url, method, body, headers, loader)
+				} else {
+					repeatRequestCounter = 0
+					throw new Error(data.message);
+				}
 			}
 			setLoading(false);
 			return data;
