@@ -1,16 +1,19 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const keys = require('./keys')
+const fileSave = require('./middleWare/fileMulter')
 
 const app = express()
 
 app.use(express.json({extends: true}));
+app.use(fileSave.single('avatar'))
 
 app.use('/api/courses', require('./routes/courses'))
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/course', require('./routes/course'))
 app.use('/api/cart', require('./routes/cart'))
 app.use('/api/order', require('./routes/order'))
+app.use('/api/profile', require('./routes/profile'))
 
 const connect = async () => {
 	try {
