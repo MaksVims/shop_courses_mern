@@ -2,10 +2,12 @@ import React, {useContext} from 'react'
 import './TableCourses.scss'
 import {convertToCurrency, formatDate} from "../../../other/utils";
 import {AuthContext} from "../../../context/auth/AuthContext";
+import {useAddToCart} from "../../../hooks/useAddToCart";
 
 const TableCourses = (props) => {
-	const {courses, readCourseHandler, addToCart} = props
+	const {courses, readCourseHandler} = props
 	const {isAuth} = useContext(AuthContext)
+	const addToCart = useAddToCart('/api/cart/addCourse')
 
 	return (
 		<table className="table table-courses">

@@ -30,7 +30,7 @@ export const useHttp = () => {
 
 
 				if (!response.ok) {
-					if (repeatRequestCounter !== 2) {
+					if (repeatRequestCounter !== 0) {
 						repeatRequestCounter++;
 						await delay(1000)
 						await request(url, method, body, headers, loader)

@@ -4,5 +4,14 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  .content-info {
+    width: 100%;
+
+    &>.cart-footer {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
 }
 

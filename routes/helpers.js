@@ -1,3 +1,5 @@
+const Course = require('../models/Course')
+
 const mapCoursesToCart = (courses) => {
 	return courses.map(course => ({
 		...course.courseId._doc,
@@ -26,9 +28,26 @@ const mapOrders = (orders) => {
 	}))
 }
 
+async function changeBuyCourses(courses) {
+	return new Promise( (resolve, reject) => {
+			courses.forEach( async item => {
+			try {
+				const {course} = item
+				course.buysCount += +item.count
+
+				await Course.findByIdAndUpdate(course._id, course)
+				resolve(true)
+			} catch (e) {
+				reject(e.message)
+			}
+		})
+	})
+}
+
 module.exports = {
 	mapCoursesToCart,
 	calcToTotalPrice,
 	mapCourseToOrder,
-	mapOrders
+	mapOrders,
+	changeBuyCourses,
 }

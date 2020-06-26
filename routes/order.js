@@ -3,7 +3,7 @@ const authJWT = require('../middleWare/authJWT')
 const errorsData = require("../errors")
 const Order = require('../models/Order')
 const User = require('../models/User')
-const {mapCourseToOrder, mapOrders} = require('./helpers')
+const {mapCourseToOrder, mapOrders, changeBuyCourses} = require('./helpers')
 
 const route = new Router()
 
@@ -17,6 +17,7 @@ route.post('/create', authJWT, async (req, res) => {
 		})
 
 		await order.save();
+		await changeBuyCourses(courses)
 		await user.clearCart();
 		res.json({})
 

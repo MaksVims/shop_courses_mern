@@ -4,6 +4,7 @@ const courseValidation = require('../validation/courseValidation')
 const errorsData = require("../errors");
 const successCodes = require("../successCodes");
 const Course = require('../models/Course')
+const User = require('../models/User')
 const authJWT = require('../middleWare/authJWT')
 
 const route = new Router();
@@ -75,6 +76,10 @@ route.post('/delete', authJWT, async (req, res) => {
 route.post('/rem_favorite', authJWT, async (req, res) => {
 	try {
 		const course = await Course.findOne({_id: req.body.id})
+		const user = await User.findOne({_id: req.user.userId})
+
+
+		await user.removeCourseToFavorites(req.user.userId);
 		await course.removeToFavorites(req.user.userId)
 
 		res.json({})
@@ -86,6 +91,9 @@ route.post('/rem_favorite', authJWT, async (req, res) => {
 route.post('/add_favorite', authJWT, async (req, res) => {
 	try {
 		const course = await Course.findOne({_id: req.body.id})
+		const user = await User.findOne({_id: req.user.userId})
+
+		await user.addCourseToFavorites(req.user.userId);
 		await course.addToFavorites(req.user.userId)
 
 		res.json({})
