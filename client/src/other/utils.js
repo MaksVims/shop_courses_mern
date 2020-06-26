@@ -1,4 +1,5 @@
 export const clone = target => JSON.parse(JSON.stringify(target))
+export const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 export const getValueFields = (formControls = {}) => {
 	return Object.keys(formControls).reduce((res, controlName) => {

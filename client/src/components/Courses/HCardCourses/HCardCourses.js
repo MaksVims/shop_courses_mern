@@ -1,15 +1,19 @@
-import React, {useContext} from 'react'
+import React, {useCallback, useContext} from 'react'
 import './HCardCourse.scss'
 import {formatDate, convertToCurrency} from "../../../other/utils";
 import Button from "../../UI/Button/Button";
 import {AuthContext} from "../../../context/auth/AuthContext";
-
+import Like from "../../Like/Like";
 
 const HCardCourses = (props) => {
-	const {title, price, imgUrl, dateCreate, _id, userId: {_id: id}} = props
+	const {title, price, imgUrl, dateCreate, _id, userId: {_id: id}, favorites} = props
 	const {readCourseHandler, editCourseHandler, addToCart} = props
 	const {isAuth, userId} = useContext(AuthContext)
 	const same = userId === id;
+
+	const isActive = useCallback(() => {
+		return favorites.includes(userId)
+	}, [userId, favorites])
 
 	return (
 		<div className="card mb-3 horizontal-card-course" style={{maxWidth: '720px'}}>
@@ -50,6 +54,11 @@ const HCardCourses = (props) => {
 					</div>
 				</div>
 			</div>
+			<Like
+				active={isActive()}
+				count={favorites.length}
+				courseId={_id}
+			/>
 		</div>
 	)
 }
