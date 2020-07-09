@@ -2,7 +2,7 @@ import * as types from '../actions/actionsTypes'
 
 const initState = {
 	modeView: 'card',
-	duration: 'asc',
+	direction: 'asc',
 	filter: 'title'
 }
 
@@ -12,8 +12,8 @@ export const coursesReducer = (state = initState, action) => {
 			return {...state, filter: action.payload}
 		case types.SWITCH_MODE_VIEW:
 			return {...state, modeView: state.modeView === 'card' ? 'table' : 'card'}
-		case types.TOGGLE_DURATION:
-			return {...state, duration: state.duration === 'asc' ? 'desc' : 'asc'}
+		case types.TOGGLE_DIRECTION:
+			return {...state, direction: state.direction === 'asc' ? 'desc' : 'asc'}
 		default:
 			return state;
 	}

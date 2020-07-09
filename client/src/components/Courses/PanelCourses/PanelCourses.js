@@ -2,14 +2,17 @@ import React, {useCallback} from 'react'
 import './PanelCourses.scss'
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {actionChangeSortFilter, actionSwitchMode, actionToggleDuration} from "../../../store/actions/coursesActions";
+import ReactTooltip from "react-tooltip";
+import shortid from 'shortid'
 
 const PanelCourses = () => {
-	const {duration, filter, modeView} = useSelector(state => state.courses, shallowEqual)
+	const {direction, filter, modeView} = useSelector(state => state.courses, shallowEqual)
 	const dispatch = useDispatch()
+	const id = shortid.generate()
 
-	const IconDuration = props => duration === 'asc'
-		? <i className="fa fa-arrow-circle-down active" {...props}> </i>
-		: <i className="fa fa-arrow-circle-up active" {...props}> </i>
+	const IconDirection = props => direction === 'asc'
+		? <i className="fa fa-arrow-circle-down active" {...props} data-tip='По убыванию' data-for={id}> </i>
+		: <i className="fa fa-arrow-circle-up active" {...props} data-tip='По возврастанию' data-for={id}> </i>
 
 	const clickHandler = useCallback(() => {
 		dispatch(actionToggleDuration())
@@ -23,8 +26,8 @@ const PanelCourses = () => {
 		dispatch(actionSwitchMode())
 	}, [dispatch])
 
-  return (
-    <div className={'panel-courses'}>
+	return (
+		<div className={'panel-courses'}>
 			<select
 				className="form-control"
 				value={filter}
@@ -34,15 +37,18 @@ const PanelCourses = () => {
 				<option value="price">Сортировать по цене</option>
 				<option value="dateCreate">Сортировать по дате</option>
 			</select>
-			<IconDuration
+			<IconDirection
 				onClick={clickHandler}
 			/>
 			<i
 				className={`fa fa-table ${modeView === 'table' ? 'active' : null}`}
+				data-tip='Переключить вид'
 				onClick={changeMode}
 			> </i>
-    </div>
-  )
+			<ReactTooltip delayShow={300} effect={"solid"} delayHide={0} delayUpdate={0}/>
+			<ReactTooltip delayShow={300} effect={"solid"} delayHide={0} delayUpdate={0} id={id}/>
+		</div>
+	)
 }
 
 export default PanelCourses
