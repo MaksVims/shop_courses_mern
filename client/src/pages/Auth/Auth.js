@@ -5,11 +5,13 @@ import './Auth.scss'
 import FormLogin from "../../components/forms/FormLogin/FormLogin";
 import FormRegister from "../../components/forms/FromRegister/FormRegister";
 import {useHash} from "../../hooks/useHash";
+import useTitle from "../../hooks/useTitle";
 
 
 const Auth = () => {
 	const {hash: currentTab} = useHash()
 	const selectHandler = useCallback(tab => window.location.hash = tab, [] )
+	useTitle('Авторизация')
 
 	return (
 		<section className={'Auth page'}>

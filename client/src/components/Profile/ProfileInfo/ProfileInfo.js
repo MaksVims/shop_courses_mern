@@ -19,6 +19,7 @@ const ProfileInfo = (props) => {
 
   const body = useAccordion(options)
 
+
   return (
     <div className={"more-info"}>
       {body}

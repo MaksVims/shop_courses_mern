@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 
-export function useAccordion(options = [], show) {
+export function useAccordion(options = [], show = true) {
 	const [expanded, setExpanded] = useState(false)
 
 	const handleChange = panel => (event, isExpanded) => {

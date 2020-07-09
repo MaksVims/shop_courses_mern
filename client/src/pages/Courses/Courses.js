@@ -5,6 +5,7 @@ import {useHistory} from 'react-router-dom'
 import Loader from "../../components/Loader/Loader";
 import CoursesList from "../../components/Courses/CoursesList/CoursesList";
 import {useHttp} from "../../hooks/useHttp";
+import useTitle from "../../hooks/useTitle";
 
 
 const Courses = () => {
@@ -13,6 +14,7 @@ const Courses = () => {
 	const {duration, filter} = useSelector(state => state.courses, shallowEqual)
 	const history = useHistory()
 	const {request, loading} = useHttp()
+	useTitle('Список курсов')
 
 	const fetchCourses = useCallback(async () => {
 		try {

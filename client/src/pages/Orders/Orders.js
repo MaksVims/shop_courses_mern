@@ -3,11 +3,13 @@ import {useHttp} from "../../hooks/useHttp";
 import Loader from "../../components/Loader/Loader";
 import OrdersList from "../../components/Orders/OrdersList/OrdersList";
 import {AuthContext} from "../../context/auth/AuthContext";
+import useTitle from "../../hooks/useTitle";
 
 const Orders = () => {
   const [orders, setOrders] = useState(null)
   const {request, loading} = useHttp()
   const {token} = useContext(AuthContext)
+  useTitle('Мои заказы')
 
   const fetchOrders = useCallback( async () => {
     try {

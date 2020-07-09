@@ -10,6 +10,7 @@ import Button from "../../components/UI/Button/Button";
 import {convertToCurrency} from "../../other/utils";
 import './Cart.scss'
 import {MESSAGES} from "../../constants";
+import useTitle from "../../hooks/useTitle";
 
 const Cart = () => {
 	const [cart, setCart] = useState(null)
@@ -18,6 +19,7 @@ const Cart = () => {
 	const {token} = useContext(AuthContext)
 	const message = useMessage()
 	useMessageError(error, message, clearError)
+	useTitle('Корзина')
 
 	const fetchCart = useCallback(async (reload = true) => {
 		try {

@@ -7,12 +7,14 @@ import Button from "../../components/UI/Button/Button";
 import './Course.scss'
 import {useAddToCart} from "../../hooks/useAddToCart";
 import {useAccordion} from "../../hooks/useAccordion";
+import useTitle from "../../hooks/useTitle";
 
 const Course = () => {
 	const {id} = useParams();
 	const {loading, request} = useHttp()
 	const [course, setCourse] = useState(null)
 	const addToCart = useAddToCart('/api/cart/addCourse')
+	useTitle('Подробности курса')
 
 	const fetchCourse = useCallback(async () => {
 		try {

@@ -1,7 +1,9 @@
 import React from 'react'
 import './Home.scss'
+import useTitle from "../../hooks/useTitle";
 
 const Home = () => {
+	useTitle('Главная')
 	return (
 		<section className="page mt-4 home-page">
 			<h1>Добро пожаловать!</h1>
