@@ -1,14 +1,16 @@
 import React, {useCallback, useContext, useEffect, useMemo, useState} from 'react'
+import axios from 'axios'
 import ProfileView from "../../components/Profile/ProfileView/ProfileView";
 import {useHttp} from "../../hooks/useHttp";
 import Loader from "../../components/Loader/Loader";
 import {AuthContext} from "../../context/auth/AuthContext";
+import useTitle from "../../hooks/useTitle";
 
 const Profile = () => {
 	const [data, setData] = useState(null)
 	const {request, loading} = useHttp()
 	const {token} = useContext(AuthContext)
-
+	useTitle('Профиль')
 
 	const fetchProfile = useCallback(async () => {
 		try {
@@ -24,9 +26,17 @@ const Profile = () => {
 
 	const updateAvatar = useCallback(async (avatar) => {
 		try {
-			await request('api/profile/save_avatar', 'POST', avatar, {
-				authorization: `Bearer ${token}`
-			}, false, true)
+			console.log(avatar)
+			const fd = new FormData()
+			fd.append('avatar', avatar, avatar.name)
+			await axios.post('/api/profile/save_avatar', fd, {
+				headers: {
+					authorization: `Bearer ${token}`,
+				},
+				onUploadProgress: function (progress) {
+					console.log(progress.loaded / progress.total)
+				}
+			})
 			await fetchProfile()
 		} catch (e) {
 		}

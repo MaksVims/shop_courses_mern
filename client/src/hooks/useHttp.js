@@ -10,18 +10,14 @@ export const useHttp = () => {
 	let repeatRequestCounter = 0;
 
 	const request = useCallback(
-		async (url, method = 'GET', body = null, headers = {}, loader = true, file = false) => {
+		async (url, method = 'GET', body = null, headers = {}, loader = true) => {
 			if (loader) {
 				setLoading(true)
 			}
 
-			if (body && !file && repeatRequestCounter === 0) {
+			if (body && repeatRequestCounter === 0) {
 				body = JSON.stringify(body);
-				headers['Content-Type'] = 'application/json';
-			}
-
-			if (body && file) {
-				console.log(body)
+				headers['content-type'] = 'application/json';
 			}
 
 			try {

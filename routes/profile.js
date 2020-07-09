@@ -50,8 +50,8 @@ route.post('/save_avatar', authJWT, async (req, res) => {
 	try {
 		const user = await User.findOne({_id: req.user.userId})
 
-		if (req.body.avatar) {
-			console.log(req.body.avatar)
+		if (req.file || req.avatar || req.body) {
+			console.log(req.file, req.avatar, req.body.toString())
 		}
 
 		await user.save()

@@ -6,6 +6,7 @@ const fileSave = require('./middleWare/fileMulter')
 const app = express()
 
 app.use(express.json({extends: true}));
+
 app.use(fileSave.single('avatar'))
 
 app.use('/api/courses', require('./routes/courses'))

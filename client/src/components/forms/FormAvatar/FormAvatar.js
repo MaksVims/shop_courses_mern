@@ -3,15 +3,21 @@ import Button from "../../UI/Button/Button";
 import './FormAvatar.scss'
 
 const FormAvatar = ({onClick}) => {
-	const [avatar, setAvatar] = useState('')
+	const [avatar, setAvatar] = useState(null)
+
+	const changeHandler = (e) => {
+		if (e.target.files) {
+			setAvatar(e.target.files[0])
+		}
+	}
 
 	return (
 		<div className={"form_avatar"}>
 			<input
 				id="avatar"
 				type='file'
-				value={avatar}
-				onChange={event => setAvatar(event.target.value)}
+				name={"avatar"}
+				onChange={changeHandler}
 			/>
 			<label htmlFor="avatar" className="custom-file-upload">
 				Выбрать файл
@@ -19,7 +25,6 @@ const FormAvatar = ({onClick}) => {
 			<Button
 				type={'submit'}
 				label={'Обновить'}
-				disabled={!avatar}
 				onClick={() => onClick(avatar)}
 			/>
 		</div>
