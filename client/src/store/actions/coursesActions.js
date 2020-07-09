@@ -2,7 +2,7 @@ import * as types from './actionsTypes'
 
 export function actionToggleDuration() {
 	return {
-		type: types.TOGGLE_DURATION
+		type: types.TOGGLE_DIRECTION
 	}
 }
 

@@ -11,7 +11,7 @@ import useTitle from "../../hooks/useTitle";
 const Courses = () => {
 	const [filteredCourses, setFilteredCourses] = useState([])
 	const [courses, setCourses] = useState([])
-	const {duration, filter} = useSelector(state => state.courses, shallowEqual)
+	const {direction, filter} = useSelector(state => state.courses, shallowEqual)
 	const history = useHistory()
 	const {request, loading} = useHttp()
 	useTitle('Список курсов')
@@ -25,9 +25,9 @@ const Courses = () => {
 	}, [request])
 
 	const filterCourses = useCallback(() => {
-		const orderedCourses = _.orderBy(courses, [filter], [duration])
+		const orderedCourses = _.orderBy(courses, [filter], [direction])
 		setFilteredCourses(orderedCourses)
-	}, [filter, courses, duration])
+	}, [filter, courses, direction])
 
 	useEffect(() => {
 		filterCourses()
